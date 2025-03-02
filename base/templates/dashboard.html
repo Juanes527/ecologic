@@ -30,7 +30,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
 
-            <a class="navbar-brand" href="{% url 'dashboard' %}" class="nav-link">SCRIPT</a>
+            <a class="navbar-brand" href="{% url 'dashboard' %}" class="nav-link">ECOLOGIC</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -40,21 +40,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
                     <li class="nav-item">
-                        <a href="{% url 'ver_guiones' %}" class="nav-link">Ver guiones</a>
+                        <a href="{% url 'facturas' %}" class="nav-link">Facturas</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'crear_guion' %}" class="nav-link">Crear guion</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'lista_guiones' %}" class="nav-link">Editar guion</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'lista_guion_historial' %}" class="nav-link">Historial de cambios</a>
-                    </li>
-
                     <li class="nav-item">
                         <a href="{% url 'logout' %}" class="nav-link">Cerrar sesión</a>
                     </li>
@@ -76,9 +63,9 @@
                          <div class="col-lg-8 col-md-10 mx-auto col-12">
                               <div class="hero-text mt-5 text-center">
 
-                                    <h6 data-aos="fade-up" data-aos-delay="300">Hola {{ data.username }}, tienes rol de usuario {{ data.role }}</h6>
+                                    <h6 data-aos="fade-up" data-aos-delay="300">Hola {{ data.username }}</h6>
 
-                                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">¡Comienza a crear y gestionar tus guiones!</h1>
+                                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">¡Comencemos a monitorear tu energía!</h1>
                                    
                               </div>
                          </div>

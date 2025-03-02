@@ -6,47 +6,18 @@ import random
 
 
 class User(models.Model):
-    ROLE_CHOICES = [
-        ("guionista", "Guionista"),
-        ("estandar", "Estándar"),
-    ]
 
     username = models.CharField(max_length=50, unique=True, null=False)
     email = models.EmailField(max_length=80, unique=True, null=False)
     password = models.CharField(max_length=255, null=False)
-    role = models.CharField(
-        max_length=50, choices=ROLE_CHOICES, default="estandar", null=False
-    )
 
-
-class Pose(models.Model):
-    gesto = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.gesto
-
-
-class Guion(models.Model):
-    titulo = models.CharField(max_length=200)
-    genero = models.CharField(max_length=100)
-    ubicacion_actores = models.TextField()
-    pose_actores = models.ForeignKey(Pose, on_delete=models.CASCADE)
-    dialogos = models.TextField()
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
-    fecha_modificacion = models.DateTimeField(auto_now=True)
+class Factura(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # Hacer el campo opcional
+    fecha = models.DateField(auto_now_add=True)
+    kwh = models.FloatField()
+    valor = models.FloatField(default=0.0)  # Valor predeterminado
+    mes = models.IntegerField(default=1)  # Valor predeterminado para el mes
+    año = models.IntegerField(default=2025)  # Valor predeterminado para el año
 
     def __str__(self):
-        return self.titulo
-
-
-class GuionHistorial(models.Model):
-    guion = models.ForeignKey(Guion, on_delete=models.CASCADE)
-    fecha = models.DateTimeField(default=timezone.now)
-    titulo = models.CharField(max_length=200)
-    genero = models.CharField(max_length=200)
-    ubicacion_actores = models.JSONField()
-    pose_actores = models.ForeignKey(Pose, on_delete=models.CASCADE, null=True)
-    dialogos = models.TextField()
-
-    def __str__(self):
-        return f"Historial de {self.guion.titulo} ({self.fecha})"
+        return f"{self.user.username if self.user else 'Anonimo'} - {self.fecha} - {self.kwh} kWh - ${self.valor} - {self.mes}/{self.año}"
